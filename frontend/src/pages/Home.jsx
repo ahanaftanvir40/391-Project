@@ -31,7 +31,7 @@ import {
 
 function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-700">
       {/* Hero Section */}
       <section className="py-20 md:py-32  container mx-auto">
         <div className="container px-4 md:px-6">
@@ -41,11 +41,11 @@ function Home() {
                 <Badge className="bg-orange-100 text-orange-800 hover:bg-orange-100">
                   🚗 Trusted by 50,000+ users
                 </Badge>
-                <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
+                <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight dark:text-white">
                   Rent Any Vehicle,
                   <span className="text-orange-600"> Anywhere</span>
                 </h1>
-                <p className="text-xl text-gray-600 leading-relaxed">
+                <p className="text-xl text-gray-600 leading-relaxed dark:text-white/70">
                   Connect with vehicle owners in your area. List your car for
                   extra income or find the perfect ride for your next adventure.
                   Professional drivers available on demand.
@@ -53,41 +53,45 @@ function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-orange-600 hover:bg-orange-700 text-lg px-8"
-                >
-                  Start Renting
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-lg px-8 bg-transparent"
-                >
-                  List Your Vehicle
-                </Button>
+                  <Link to='/vehicles'>
+                    <Button
+                      size="lg"
+                      className="bg-orange-600 hover:bg-orange-700 text-lg px-8"
+                    >
+                      Start Renting
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
+                <Link to='/addvehicles'>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="text-lg px-8"
+                  >
+                    List Your Vehicle
+                  </Button>
+                </Link>
               </div>
 
-              <div className="flex items-center space-x-8 pt-4">
+              <div className="flex items-center space-x-8 pt-4 ">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">50K+</div>
-                  <div className="text-sm text-gray-600">Active Users</div>
+                  <div className="text-2xl font-bold text-gray-900 dark:text-white">50K+</div>
+                  <div className="text-sm text-gray-400">Active Users</div>
+                </div> 
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-gray-900 dark:text-white">10K+</div>
+                  <div className="text-sm text-gray-400">Vehicles Listed</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">10K+</div>
-                  <div className="text-sm text-gray-600">Vehicles Listed</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">4.9★</div>
-                  <div className="text-sm text-gray-600">Average Rating</div>
+                  <div className="text-2xl font-bold text-gray-900 dark:text-white">4.9★</div>
+                  <div className="text-sm text-gray-400">Average Rating</div>
                 </div>
               </div>
             </div>
 
             <div className="relative">
               <img
-                src="/placeholder.svg?height=600&width=800"
+                src="/assets/hero2.png"
                 alt="Modern car rental platform"
                 width={800}
                 height={600}
@@ -112,14 +116,14 @@ function Home() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-white">
+      <section id="features" className="py-20 ">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="text-center space-y-4 mb-16">
             <Badge className="bg-orange-100 text-orange-800">Features</Badge>
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">
               Everything You Need in One Platform
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-white/70 max-w-2xl mx-auto">
               Whether you're looking to earn extra income or find the perfect
               vehicle, we've got you covered.
             </p>
@@ -217,13 +221,13 @@ function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-20 bg-gray-50">
+      <section id="how-it-works" className="py-20">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="text-center space-y-4 mb-16">
             <Badge className="bg-orange-100 text-orange-800">
               How It Works
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">
               Get Started in 3 Simple Steps
             </h2>
           </div>
@@ -231,7 +235,7 @@ function Home() {
           <div className="grid md:grid-cols-2 gap-16">
             {/* For Renters */}
             <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-gray-900 text-center">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center">
                 For Renters
               </h3>
               <div className="space-y-6">
@@ -240,10 +244,10 @@ function Home() {
                     1
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">
+                    <h4 className="font-semibold text-gray-900 dark:text-white">
                       Search & Browse
                     </h4>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-white">
                       Find the perfect vehicle in your area using our smart
                       filters.
                     </p>
@@ -254,10 +258,10 @@ function Home() {
                     2
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">
+                    <h4 className="font-semibold text-gray-900 dark:text-white">
                       Book Instantly
                     </h4>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-white">
                       Select your dates, add a driver if needed, and confirm
                       your booking.
                     </p>
@@ -268,10 +272,10 @@ function Home() {
                     3
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">
+                    <h4 className="font-semibold text-gray-900 dark:text-white">
                       Drive & Enjoy
                     </h4>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-white">
                       Pick up your vehicle and hit the road with full insurance
                       coverage.
                     </p>
@@ -282,7 +286,7 @@ function Home() {
 
             {/* For Owners */}
             <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-gray-900 text-center">
+              <h3 className="text-2xl font-bold text-gray-900 text-center dark:text-white">
                 For Vehicle Owners
               </h3>
               <div className="space-y-6">
@@ -291,10 +295,10 @@ function Home() {
                     1
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">
+                    <h4 className="font-semibold text-gray-900 dark:text-white">
                       List Your Vehicle
                     </h4>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-white">
                       Upload photos, set your price, and describe your vehicle
                       in minutes.
                     </p>
@@ -305,10 +309,10 @@ function Home() {
                     2
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">
+                    <h4 className="font-semibold text-gray-900 dark:text-white">
                       Accept Bookings
                     </h4>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-white">
                       Review rental requests and approve bookings that work for
                       you.
                     </p>
@@ -319,8 +323,8 @@ function Home() {
                     3
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Earn Money</h4>
-                    <p className="text-gray-600">
+                    <h4 className="font-semibold text-gray-900 dark:text-white">Earn Money</h4>
+                    <p className="text-gray-600 dark:text-white">
                       Get paid automatically after each rental with our secure
                       payment system.
                     </p>
@@ -333,15 +337,15 @@ function Home() {
       </section>
 
       {/* Trust Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div className="space-y-2">
               <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
                 <Shield className="h-8 w-8 text-orange-600" />
               </div>
-              <h3 className="font-semibold text-gray-900">Fully Insured</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className="font-semibold text-gray-900 dark:text-white">Fully Insured</h3>
+              <p className="text-sm text-gray-600 dark:text-white/70">
                 Comprehensive coverage for every rental
               </p>
             </div>
@@ -349,8 +353,8 @@ function Home() {
               <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
                 <Clock className="h-8 w-8 text-orange-600" />
               </div>
-              <h3 className="font-semibold text-gray-900">24/7 Support</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className="font-semibold text-gray-900 dark:text-white">24/7 Support</h3>
+              <p className="text-sm text-gray-600 dark:text-white/70">
                 Round-the-clock customer assistance
               </p>
             </div>
@@ -358,8 +362,8 @@ function Home() {
               <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
                 <Star className="h-8 w-8 text-orange-600" />
               </div>
-              <h3 className="font-semibold text-gray-900">Verified Users</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className="font-semibold text-gray-900 dark:text-white">Verified Users</h3>
+              <p className="text-sm text-gray-600 dark:text-white/70">
                 All users are identity verified
               </p>
             </div>
@@ -367,8 +371,8 @@ function Home() {
               <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
                 <CheckCircle className="h-8 w-8 text-orange-600" />
               </div>
-              <h3 className="font-semibold text-gray-900">Easy Process</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className="font-semibold text-gray-900 dark:text-white">Easy Process</h3>
+              <p className="text-sm text-gray-600 dark:text-white/70">
                 Simple booking and listing experience
               </p>
             </div>

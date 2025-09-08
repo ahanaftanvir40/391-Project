@@ -39,7 +39,7 @@ const CommentsSection = ({ post, onCommentSubmit, onReplySubmit }) => {
                         <div className="flex items-center gap-2 mt-6">
                             <img
                                 className="h-10 w-10 rounded-full"
-                                src={`http://localhost:3000/public/images/user-avatars/${comment.userId.avatar}`}
+                                src={`http://localhost:3000/public/images/user-avatars/${comment.userId?.avatar || "default.jpg"}`}
                                 alt="Profile Avatar"
                             />
                             <p className="text-white/90">{comment && comment.content}</p>

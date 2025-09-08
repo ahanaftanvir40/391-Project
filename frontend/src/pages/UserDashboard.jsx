@@ -19,7 +19,7 @@ function UserDashboard() {
       );
       setPendingBookings(
         pendingBookings.filter((booking) => booking._id !== bookingId)
-      )
+      );
     } catch (error) {
       console.log("Error deleting requested rent vehicle", error);
     }
@@ -99,25 +99,25 @@ function UserDashboard() {
     fetchUserBooking();
   }, []);
 
-
-  console.log('User: ', user);
+  console.log("User: ", user);
 
   return (
     <div className="container mx-auto p-4">
       <div className="flex items-center justify-center gap-4 mb-6">
         <div className="w-16 h-16 rounded-full overflow-hidden shadow-md">
           <img
-            src={`http://localhost:3000/public/images/user-avatars/${user?.avatar || "default-avatar.jpg"
-              }`}
+            src={`http://localhost:3000/public/images/user-avatars/${
+              user?.avatar || "default-avatar.jpg"
+            }`}
             alt={`${user?.name || "User"}'s avatar`}
             className="w-full h-full object-cover"
           />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-gray-300">
+          <h1 className="text-xl font-bold text-gray-700">
             Welcome, {user.name}
           </h1>
-          <p className="text-gray-300">to your Dashboard</p>
+          <p className="text-gray-700">to your Dashboard</p>
         </div>
       </div>
 
@@ -187,7 +187,9 @@ function UserDashboard() {
           <tbody>
             {pendingBookings.map((booking) => (
               <tr key={booking._id} className="text-black/60">
-                <td className="border px-4 py-2">{booking.vehicleId.brand} {booking.vehicleId.model}</td>
+                <td className="border px-4 py-2">
+                  {booking.vehicleId.brand} {booking.vehicleId.model}
+                </td>
                 <td className="border px-4 py-2">{booking.userId.name}</td>
                 <td className="border px-4 py-2">
                   {new Date(booking.bookingStart).toLocaleDateString()}
@@ -232,8 +234,12 @@ function UserDashboard() {
           <tbody>
             {approvedBookings.map((booking) => (
               <tr key={booking._id} className="text-black/60">
-                <td className="border px-4 py-2">{booking.vehicleId.brand} {booking.vehicleId.model}</td>
-                <td className="border px-4 py-2">{booking.userId && booking.userId.name}</td>
+                <td className="border px-4 py-2">
+                  {booking.vehicleId.brand} {booking.vehicleId.model}
+                </td>
+                <td className="border px-4 py-2">
+                  {booking.userId && booking.userId.name}
+                </td>
                 <td className="border px-4 py-2">
                   {new Date(booking.bookingStart).toLocaleDateString()}
                 </td>

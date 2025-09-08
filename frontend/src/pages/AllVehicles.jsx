@@ -84,10 +84,10 @@ function AllVehicles() {
       </form>
 
       <div className="gap-1 mt-10 mb-8">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-300 dark:text-white/80">
+        <h2 className="text-2xl font-bold tracking-tight text-gray-700 dark:text-white/80">
           Available Vehicles
         </h2>
-        <p className="text-semibold text-[#cfcad1] dark:text-slate-400">
+        <p className="text-semibold text-gray-600 dark:text-slate-400">
           Browse our selection of vehicles for rent.
         </p>
       </div>

@@ -9,7 +9,7 @@ function Footer() {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <Car className="h-8 w-8 text-orange-600" />
-              <span className="text-2xl font-bold">RentDrive</span>
+              <span className="text-2xl font-bold">WheelZOnRent</span>
             </div>
             <p className="text-gray-400">
               The trusted platform for vehicle rentals and driver services.
@@ -84,11 +84,11 @@ function Footer() {
             <div className="space-y-2 text-gray-400">
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
-                <span>1-800-RENTDRIVE</span>
+                <span>1-800-wheelzonrent</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
-                <span>support@rentdrive.com</span>
+                <span>support@wheelzonrent.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4" />
@@ -100,7 +100,7 @@ function Footer() {
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
           <p>
-            &copy; 2024 RentDrive. All rights reserved. | Privacy Policy | Terms
+            &copy; 2025 WheelZOnRent. All rights reserved. | Privacy Policy | Terms
             of Service
           </p>
         </div>

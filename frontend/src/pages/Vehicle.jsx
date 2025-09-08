@@ -16,7 +16,6 @@ import { useAuth } from "../store/auth";
 import ChatComponent from "../components/ChatComponent";
 import OwnerChatComponent from "../components/OwnerChatComponent";
 
-
 import {
   MapIcon,
   CalendarIcon,
@@ -42,7 +41,7 @@ function Vehicle() {
   const [unavailableDates, setUnavailableDates] = useState([]);
   const [rating, setRating] = useState({
     rating: 0,
-    review: ''
+    review: "",
   });
 
   useEffect(() => {
@@ -63,7 +62,7 @@ function Vehicle() {
       }
     };
     fetchVehicle();
-  }, [vehicleId, booked]); // Dependency array includes `vehicleId` and `booked`
+  }, [vehicleId, booked]);
 
   //fetch unavailable dates
   useEffect(() => {
@@ -78,7 +77,6 @@ function Vehicle() {
           }
         );
         setUnavailableDates(response.data.unavailableDates);
-
       } catch (error) {
         console.error("Error fetching unavailable dates:", error);
       }
@@ -86,7 +84,6 @@ function Vehicle() {
 
     fetchUnavailableDates();
   }, []); // Dependency array includes `vehicleId`
-
 
   //fetch drivers
   useEffect(() => {
@@ -122,7 +119,6 @@ function Vehicle() {
     const start = new Date(dateRange.start);
     const end = new Date(dateRange.end);
 
-
     const dates = [];
     let current = new Date(start);
 
@@ -135,15 +131,16 @@ function Vehicle() {
   });
   console.log("unavailableDateObjects:", unavailableDateObjects);
 
-
   const onSubmit = async (data) => {
     try {
       const { driverId } = data;
 
       // Parse dates and calculate duration
-      const bookingStart = startDate
-      const bookingEnd = endDate
-      const diffDays = Math.ceil((bookingEnd - bookingStart) / (1000 * 60 * 60 * 24)); // Inclusive of both days
+      const bookingStart = startDate;
+      const bookingEnd = endDate;
+      const diffDays = Math.ceil(
+        (bookingEnd - bookingStart) / (1000 * 60 * 60 * 24)
+      ); // Inclusive of both days
       const totalAmount = diffDays * vehicle.pricePerDay;
 
       // Prepare booking data
@@ -163,51 +160,57 @@ function Vehicle() {
         return;
       }
 
-
-      const response = await axios.post(`http://localhost:3000/api/bookings`, newBooking, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-        },
-      });
+      const response = await axios.post(
+        `http://localhost:3000/api/bookings`,
+        newBooking,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
+        }
+      );
 
       console.log("Booking Successful:", response.data);
       setBooked(true);
       toast.success("Booking Successful!");
       setIsOpen(false);
     } catch (error) {
-      console.error("Error creating booking:", error.response?.data || error.message);
+      console.error(
+        "Error creating booking:",
+        error.response?.data || error.message
+      );
     }
   };
 
   //Ratings
   const onSubmitRating = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     console.log("Rating:", rating);
 
     try {
-      const response = await axios.post(`http://localhost:3000/api/vehicles/${vehicleId}/rate`, rating, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`
+      const response = await axios.post(
+        `http://localhost:3000/api/vehicles/${vehicleId}/rate`,
+        rating,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
         }
-      })
-      setVehicle(response.data.vehicle)
-      toast.success("Rating Successful!")
-      setRating({ review: '', rating: 0 })
-
+      );
+      setVehicle(response.data.vehicle);
+      // window.reload()
+      // toast.success("Rating Successful!")
+      setRating({ review: "", rating: 0 });
     } catch (error) {
-      toast.error("You have already rated this vehicle")
+      toast.error("You have already rated this vehicle");
     }
-  }
-
-
+  };
 
   // console.log('Vehicle ID from fetch:' , vehicle._id);
   const ownerID = vehicle.ownerId && vehicle.ownerId._id;
   // console.log("unavailable dates:", unavailableDates);
   // console.log('vehicle latitude and longitude:', vehicle.latitude, vehicle.longitude);
   // console.log("vehicle data:", vehicle);
-
-
 
   return (
     <div>
@@ -248,7 +251,7 @@ function Vehicle() {
 
         <div className="flex flex-col sm:flex-row justify-between mt-3 sm:mt-5">
           <div>
-            <h1 className="flex items-center mb-2 sm:mb-1 text-4xl sm:text-5xl font-extrabold text-gray-200 dark:text-white mt-3">
+            <h1 className="flex items-center mb-2 sm:mb-1 text-4xl sm:text-5xl font-extrabold text-gray-700 dark:text-white mt-3">
               {vehicle.brand}
               <span className="bg-blue-100 text-blue-800 text-xl sm:text-2xl font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-2">
                 {vehicle.model}
@@ -256,18 +259,28 @@ function Vehicle() {
             </h1>
           </div>
           <h1
-            className={`py-4 px-4 rounded-lg text-center text-xl font-semibold  sm:mt-0 ${vehicle.availability
-              ? "bg-gradient-to-r from-teal-200 to-lime-200 text-black/80"
-              : "bg-red-500 text-white"
-              }`}
+            className={`py-4 px-4 rounded-lg text-center text-xl font-semibold  sm:mt-0 ${
+              vehicle.availability
+                ? "bg-gradient-to-r from-teal-200 to-lime-200 text-black/80"
+                : "bg-red-500 text-white"
+            }`}
           >
             {vehicle.availability ? "Available" : "Not Available"}
           </h1>
         </div>
 
-        <div className={`${vehicle.latitude !== 0 ? 'flex flex-col sm:flex-row gap-4' : 'border flex justify-center'} mt-4`}>
-          <div className={`${vehicle.latitude ? 'sm:w-3/4 w-full' : 'sm:min-w-full'} bg-[#9389bd]  sm:min-h-[600px]  dark:shadow-zinc-600 p-4 rounded-lg dark:bg-zinc-900 flex-col justify-between`}>
-
+        <div
+          className={`${
+            vehicle.latitude !== 0
+              ? "flex flex-col sm:flex-row gap-4"
+              : "border flex justify-center"
+          } mt-4`}
+        >
+          <div
+            className={`${
+              vehicle.latitude ? "sm:w-3/4 w-full" : "sm:min-w-full"
+            } bg-[#9389bd]  sm:min-h-[600px]  dark:shadow-zinc-600 p-4 rounded-lg dark:bg-zinc-900 flex-col justify-between`}
+          >
             <div className="grid grid-cols-2 gap-5 text-gray-200">
               <div className="flex items-center dark:text-white/80">
                 <CarIcon className="mr-2 h-5 w-5" />
@@ -300,7 +313,6 @@ function Vehicle() {
                 Booking Information
               </h1>
               <div className="mt-4">
-
                 <div className="flex items-center mb-1 dark:text-white/80">
                   <UserRoundIcon className="mr-2 h-5 w-5" />
                   <span>{vehicle.ownerId && vehicle.ownerId.name}</span>
@@ -332,7 +344,9 @@ function Vehicle() {
                     <label className="block">
                       <select
                         value={rating.rating}
-                        onChange={(e) => setRating({ ...rating, rating: e.target.value })}
+                        onChange={(e) =>
+                          setRating({ ...rating, rating: e.target.value })
+                        }
                         className="mt-2 block w-2/12 rounded-md border-gray-300 shadow-sm outline-none  bg-gray-100 text-black/80"
                       >
                         <option value="">Select a rating</option>
@@ -342,14 +356,19 @@ function Vehicle() {
                           </option>
                         ))}
                       </select>
-                      {errors.rating && <span className="text-red-500">{errors.rating.message}</span>}
+                      {errors.rating && (
+                        <span className="text-red-500">
+                          {errors.rating.message}
+                        </span>
+                      )}
                     </label>
                     <div className="flex items-center gap-4  ">
                       <label className="block">
-
                         <textarea
                           value={rating.review}
-                          onChange={(e) => setRating({ ...rating, review: e.target.value })}
+                          onChange={(e) =>
+                            setRating({ ...rating, review: e.target.value })
+                          }
                           className=" block w-64 rounded-md border-gray-300 shadow-sm bg-gray-100 text-black/80 outline-none resize-none"
                         />
                       </label>
@@ -384,8 +403,13 @@ function Vehicle() {
                     {isOpen && (
                       <dialog className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
                         <div className="modal-box bg-white p-6 sm:p-20 rounded-lg shadow-xl w-full max-w-lg">
-                          <h3 className="font-bold text-center text-lg mb-4">BOOKING INFO</h3>
-                          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 px-4 sm:px-20">
+                          <h3 className="font-bold text-center text-lg mb-4">
+                            BOOKING INFO
+                          </h3>
+                          <form
+                            onSubmit={handleSubmit(onSubmit)}
+                            className="space-y-6 px-4 sm:px-20"
+                          >
                             {/* Start Date */}
                             <label className="block">
                               <span className="text-gray-700">Start Date:</span>
@@ -405,7 +429,11 @@ function Vehicle() {
                               <DatePicker
                                 selected={endDate}
                                 onChange={(date) => setEndDate(date)}
-                                minDate={startDate ? new Date(startDate.getTime() + 86400000) : new Date()} // One day after start date
+                                minDate={
+                                  startDate
+                                    ? new Date(startDate.getTime() + 86400000)
+                                    : new Date()
+                                } // One day after start date
                                 excludeDates={unavailableDateObjects}
                                 placeholderText="Select an end date"
                                 className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -414,7 +442,9 @@ function Vehicle() {
                             <label className="block">
                               <span className="text-gray-700">Driver:</span>
                               <select
-                                {...register("driverId", { required: "Driver selection is required" })}
+                                {...register("driverId", {
+                                  required: "Driver selection is required",
+                                })}
                                 defaultValue={drivers[0]._id}
                                 className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                               >
@@ -441,7 +471,6 @@ function Vehicle() {
                                 Close
                               </button>
                             </div>
-
                           </form>
                         </div>
                       </dialog>
@@ -476,7 +505,9 @@ function Vehicle() {
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
                       />
-                      <Marker position={[vehicle.latitude, vehicle.longitude]} />
+                      <Marker
+                        position={[vehicle.latitude, vehicle.longitude]}
+                      />
                     </MapContainer>
                   )}
                 </div>
@@ -509,7 +540,9 @@ function Vehicle() {
                   {Array.from({ length: review.rating }, (_, index) => (
                     <StarIcon key={index} className="text-yellow-400 mr-1" />
                   ))}
-                  <span className="text-sm text-gray-400">{review.rating} / 5</span>
+                  <span className="text-sm text-gray-400">
+                    {review.rating} / 5
+                  </span>
                 </div>
                 <p className="text-gray-200">{review.review}</p>
                 {review.userId && (

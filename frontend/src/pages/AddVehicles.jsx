@@ -184,7 +184,7 @@ function AddVehicles() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                         <Label htmlFor="category">Category</Label>
-                                        <Select name="category" value={vehicle.category} onValueChange={handleChange}>
+                                        <Select name="category" value={vehicle.category} onValueChange={(value) => setVehicle(prev => ({ ...prev, category: value }))}>
                                             <SelectTrigger>
                                                 <SelectValue placeholder="Select category" />
                                             </SelectTrigger>
